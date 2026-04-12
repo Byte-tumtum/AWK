@@ -1,4 +1,12 @@
+
 BEGIN {
-    print "Implement this solution" > "/dev/stderr"
-    exit 1
+    name="you"
+}
+
+NF {
+    name=$0
+}
+
+END {
+    print "One for " name ", one for me."
 }

@@ -19,9 +19,9 @@ awk '
     function startsWith(text, prefix) {
         return text ~ "^"prefix
     }
+
     {
-      FS=":"
-      $0=$0; 
+    ((NR==1) && (FS=":") && ($0=$0)); 
       if (!startsWith($6, "/home") && !startsWith($6, "/root")) {print $0}
     }
 ' ./passwd
@@ -33,8 +33,7 @@ awk '
     }
 
     {
-      FS=":"
-      $0=$0;
+      ((NR==1) && (FS=":") && ($0=$0)); 
       if ((startsWith($6, "/home") || startsWith($6, "/root")) && startsWith($7, "/bin/bash")) {print $0}
     }
 ' ./passwd
